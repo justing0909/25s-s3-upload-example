@@ -16,7 +16,7 @@ UPLOAD_INTERVAL = 3
 # Total number of uploads to perform
 NUM_UPLOADS = 4
 # The name of the s3 bucket you're uploading to
-S3_BUCKET_NAME = "ds4300-fontenot-project-bucket"
+S3_BUCKET_NAME = "ds4300-final-guthrie"
 
 
 # Load the values from .env into dictionary
@@ -41,6 +41,7 @@ def get_random_json_file(folder_path):
 # upload the selected file to the s3 bucket into uploads folder.
 def upload_to_s3(s3_client, file_path, bucket_name):
     try:
+        print(f"bucket name is {bucket_name}")
         with open(file_path, "rb") as file:
             s3_client.upload_fileobj(
                 file, bucket_name, f"uploads/{Path(file_path).name}"
